@@ -18,30 +18,15 @@ function Login() {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    try {
-      // Supongamos que la función `login` devuelve un objeto de usuario
-      const user = await login(data.email, data.password, data.dni);
-
-      if (user) {
-        // Guardamos el DNI en localStorage
-        localStorage.setItem("dniConductor", user.user.dni);
-
-        console.log("datos de user:" + user.user.dni);
-        console.log(user);
-
-        handleLogin(); // Llamamos al método de contexto de autenticación
-        setAlertMessage("Bienvenido");
-        navigate("/");
-      } else {
-        setAlertMessage("Usuario no encontrado");
-      }
-
+    
+    // Simulación de éxito sin verificar usuario
+    setTimeout(() => {
+      setAlertMessage("Bienvenido");
+      navigate("/dashboard"); // Cambia "/dashboard" por la ruta que usarás en el futuro
       setLoading(false);
-    } catch (error) {
-      setAlertMessage("Error al iniciar sesión: " + error.message);
-      setLoading(false);
-    }
+    }, 1000);
   };
+  
 
   return (
     <div className="login-container">
@@ -84,7 +69,10 @@ function Login() {
           )}
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button className="button" type="submit" disabled={loading}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24">
+            <path d="m18 0 8 12 10-8-4 20H4L0 4l10 8 8-12z"></path>
+          </svg>
           {loading ? "Cargando..." : "Iniciar sesión"}
         </button>
 
