@@ -1,0 +1,115 @@
+/* Estilos generales (Mobile-first) */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .login-container h2 {
+    margin-bottom: 20px;
+    color: #fffefe;
+  }
+  
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-container form div {
+    position: relative; /* Para que los mensajes de error se ubiquen sin deformar */
+    margin-bottom: 25px; /* Espacio entre los inputs */
+  }
+  
+  .login-container label {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+    position: absolute;
+    bottom: -20px; /* Espacio para el mensaje de error */
+    left: 0;
+    width: 100%;
+    height: 15px; /* Altura reservada para el mensaje */
+    margin-bottom: 5px;
+  }
+  
+  .login-container button {
+    padding: 10px;
+    background-color: #f38dc8;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+  
+  .login-container button:hover {
+    background-color: #ed61ff;
+  }
+  
+  .alert-message {
+    color: green;
+    font-size: 1rem;
+    margin-top: 10px;
+    min-height: 20px; /* Espacio reservado para el mensaje de alerta */
+  }
+  
+  .olvide-contraseña {
+    text-align: center;
+    color: rgb(0, 204, 255);
+  }
+  .olvide-contraseña:hover {
+    cursor: pointer;
+  }
+  
+  /* Estilos para pantallas más grandes (PC) */
+  @media (min-width: 768px) {
+    .login-container {
+      /*width: ;*/
+      padding: 1 00px;
+    }
+  
+    .login-container form {
+      max-width: 800px;
+      width: 800px;
+    }
+  
+    .login-container h2 {
+      font-size: 2rem;
+    }
+  
+    .login-container input {
+      font-size: 1.2rem;
+    }
+  
+    .login-container button {
+      font-size: 1.2rem;
+    }
+  }
