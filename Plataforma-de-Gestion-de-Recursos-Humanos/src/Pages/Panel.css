@@ -1,0 +1,196 @@
+/* Estilo general del contenedor */
+.panel-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #11182752; /* Fondo oscuro para todo el panel */
+    color: white;
+  }
+  
+  /* SIDEBAR (Menú lateral) */
+  .panel-sidebar {
+    width: 25%;
+    background-color: #1e3b8a70; /* Azul oscuro */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilos del usuario en el sidebar */
+  .panel-user-avatar {
+    background-color: #e5e7eb;
+    padding: 15px;
+    border-radius: 50%;
+  }
+  
+  .panel-user-name {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* Estilo de la lista de análisis recientes */
+  .panel-recent-list {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .panel-recent-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f2937a4;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Íconos en la lista */
+  .panel-icon-check {
+    color: #10b981; /* Verde */
+  }
+  
+  .panel-icon-error {
+    color: #ef4444; /* Rojo */
+  }
+  
+  /* Botón de cerrar sesión */
+  .panel-logout {
+    margin-top: auto;
+    background-color: #dc2626;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .panel-logout:hover {
+    background-color: #b91c1c;
+  }
+  
+  /* MAIN CONTENT */
+  .panel-main {
+    flex: 1;
+    padding: 30px;
+    background-color: #11182779;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Permite scroll si el contenido es muy grande */
+}
+  
+  /* Botón de subir archivo */
+  .panel-upload-btn {
+    display: inline-block;
+    background-color: #3741517a;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  
+  .panel-upload-btn:hover {
+    background-color: #4b556398;
+  }
+  
+  /* Sección de estadísticas */
+  .panel-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .panel-stat-item {
+    display: flex;
+    align-items: center;
+    background-color: #1f293763;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  /* Colores de los iconos en estadísticas */
+  .panel-icon-blue {
+    color: #3b82f6;
+  }
+  
+  .panel-icon-green {
+    color: #10b981;
+  }
+  
+  .panel-icon-yellow {
+    color: #facc15;
+  }
+  
+  .panel-icon-red {
+    color: #ef4444;
+  }
+  
+  /* Botón de exportar */
+  .panel-export-btn {
+    display: flex;
+    align-items: center;
+    background-color: #22c55e9a;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .panel-export-btn:hover {
+    background-color: #16a34a;
+  }
+  
+  /* Sección de anomalías */
+  .panel-anomalies {
+    margin-top: 20px;
+    max-height: 50vh; /* Limita la altura de la sección */
+    overflow-y: auto; /* Agrega scroll si hay muchas anomalías */
+}
+  
+.panel-anomalies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste automático */
+    gap: 15px;
+    width: 100%;
+}
+  
+  .panel-anomaly-item {
+    background-color: #1f29376e;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .panel-anomaly-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .panel-anomaly-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .panel-anomaly-dept {
+    font-size: 0.9rem;
+    color: #9ca3af;
+  }
+  
+  /* Botón de detalles */
+  .panel-details-btn {
+    margin-top: 10px;
+    background-color: #dc262677;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .panel-details-btn:hover {
+    background-color: #b91c1c;
+  }
+  

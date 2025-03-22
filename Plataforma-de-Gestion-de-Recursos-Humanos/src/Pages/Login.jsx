@@ -19,10 +19,10 @@ function Login() {
   const onSubmit = async (data) => {
     setLoading(true);
     
-    // Simulación de éxito sin verificar usuario
+    
     setTimeout(() => {
       setAlertMessage("Bienvenido");
-      navigate("/dashboard"); // Cambia "/dashboard" por la ruta que usarás en el futuro
+      navigate("/panel"); 
       setLoading(false);
     }, 1000);
   };
