@@ -128,7 +128,7 @@
   
   /* Botón de exportar */
   .panel-export-btn {
-    display: flex;
+    display: inline-block;
     align-items: center;
     background-color: #22c55e9a;
     padding: 10px;

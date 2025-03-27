@@ -52,8 +52,8 @@ const Panel = () => {
 
       {/* Main Content */}
       <main className="panel-main">
-        <h1 className="panel-title">Sube el archivo aquí</h1>
-        <button className="panel-upload-btn">Descargar archivo de ejemplo</button>
+        <h1 className="panel-title">Panel de Recursos Humanos</h1>
+        <button className="panel-upload-btn">Ingresar registro de asistencias</button>
 
         {/* Sección de estadísticas */}
         <div className="panel-stats">
