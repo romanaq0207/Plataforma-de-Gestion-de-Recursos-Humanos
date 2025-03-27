@@ -11,7 +11,7 @@
 - Aragón Evelyn
 
 ## Repositorio Github:
-[link al repositorio de github](https://github.com/romanaq0207/Plataforma-de-Gestion-de-Recursos-Humanos.git)
+https://github.com/romanaq0207/Plataforma-de-Gestion-de-Recursos-Humanos.git
 
 ### Ejecutar el Frontend
 
