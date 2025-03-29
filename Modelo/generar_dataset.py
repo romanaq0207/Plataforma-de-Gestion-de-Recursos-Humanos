@@ -2,15 +2,25 @@ import pandas as pd
 import random
 from datetime import datetime, timedelta
 
-# Configuración
-num_employees = 10
+num_employees = 20
 num_days = 30
 start_date = datetime(2025, 3, 1)
 
 nombres = [
     "Juan Pérez", "María Gómez", "Carlos López", "Ana Rodríguez", "Luis Fernández",
-    "Sofía Martínez", "Pedro Sánchez", "Laura Díaz", "Jorge Torres", "Lucía Herrera"
+    "Sofía Martínez", "Pedro Sánchez", "Laura Díaz", "Jorge Torres", "Lucía Herrera",
+    "Valentina Morales", "Mateo Ruiz", "Camila Castro", "Sebastián Vega", "Martina Navarro",
+    "Benjamín Ortega", "Emilia Paredes", "Tomás Aguirre", "Isabella Ríos", "Santiago Romero"
 ]
+
+def generar_pesos_logicos():
+    presente = random.randint(40, 70)
+    restante = 100 - presente
+    retraso = random.randint(0, restante)
+    restante -= retraso
+    salida_anticipada = random.randint(0, restante)
+    ausente = 100 - (presente + retraso + salida_anticipada)
+    return [presente, retraso, salida_anticipada, ausente]
 
 data = []
 registro_id = 1
@@ -20,21 +30,21 @@ for emp_id in range(1, num_employees + 1):
     llegadas_tarde_consecutivas = 0
     salidas_tempranas_consecutivas = 0
 
+    pesos = generar_pesos_logicos()
+
     for i in range(num_days):
         date = start_date + timedelta(days=i)
 
         asistencia = random.choices(
             population=["presente", "retraso", "salida_anticipada", "ausente"],
-            weights=[65, 15, 10, 10],
+            weights=pesos,
             k=1
         )[0]
 
-        # Por defecto todo en cero
         entrada = ""
         salida = ""
         ausente = 0
 
-        # Reset de contadores según el tipo
         if asistencia == "ausente":
             ausente = 1
             ausencias_consecutivas += 1
@@ -52,14 +62,13 @@ for emp_id in range(1, num_employees + 1):
             ausencias_consecutivas = 0
             llegadas_tarde_consecutivas = 0
             salidas_tempranas_consecutivas += 1
-        else:  # presente
+        else:
             entrada = f"08:{random.choice(['00', '05', '10'])}"
             salida = "17:00"
             ausencias_consecutivas = 0
             llegadas_tarde_consecutivas = 0
             salidas_tempranas_consecutivas = 0
 
-        # Conversión de horas a minutos
         def hora_a_minutos(hora):
             if not hora:
                 return 0
@@ -86,7 +95,6 @@ for emp_id in range(1, num_employees + 1):
 
         registro_id += 1
 
-# Exportar
 df = pd.DataFrame(data)
-df.to_csv("dataset_script.csv", index=False)
-print("✅ Dataset actualizado con nuevas columnas de comportamiento consecutivo.")
+df.to_csv("dataset.csv", index=False)
+print("✅ Dataset actualizado con pesos aleatorios y comportamiento consecutivo.")
