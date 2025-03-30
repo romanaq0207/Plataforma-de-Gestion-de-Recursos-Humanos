@@ -92,14 +92,7 @@
   .panel-upload-btn:hover {
     background-color: #4b556398;
   }
-  
-  /* Sección de estadísticas */
-  .panel-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-top: 20px;
-  }
+
   
   .panel-stat-item {
     display: flex;
@@ -108,8 +101,7 @@
     padding: 15px;
     border-radius: 8px;
   }
-  
-  /* Colores de los iconos en estadísticas */
+
   .panel-icon-blue {
     color: #3b82f6;
   }
@@ -126,7 +118,6 @@
     color: #ef4444;
   }
   
-  /* Botón de exportar */
   .panel-export-btn {
     display: inline-block;
     align-items: center;
@@ -141,16 +132,16 @@
     background-color: #16a34a;
   }
   
-  /* Sección de anomalías */
+
   .panel-anomalies {
     margin-top: 20px;
-    max-height: 50vh; /* Limita la altura de la sección */
-    overflow-y: auto; /* Agrega scroll si hay muchas anomalías */
+    max-height: 50vh; 
+    overflow-y: auto; 
 }
   
 .panel-anomalies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste automático */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
     width: 100%;
 }
@@ -181,7 +172,6 @@
     color: #9ca3af;
   }
   
-  /* Botón de detalles */
   .panel-details-btn {
     margin-top: 10px;
     background-color: #dc262677;

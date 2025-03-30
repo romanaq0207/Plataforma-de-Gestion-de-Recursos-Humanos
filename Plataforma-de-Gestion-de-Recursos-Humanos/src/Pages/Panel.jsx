@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaDownload,
@@ -12,9 +12,28 @@ import "./Panel.css";
 
 const Panel = () => {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
+  const [fileName, setFileName] = useState("");
+  const anomalies = [
+    { name: "Roman Quevedo", dept: "Dto. Informática" },
+    { name: "Laura Fernández", dept: "Recursos Humanos" },
+    { name: "Carlos Pérez", dept: "Contabilidad" },
+    { name: "Marta Sánchez", dept: "Ventas" },
+    { name: "Javier Gómez", dept: "Logística" },
+    { name: "Ana López", dept: "Atención al Cliente" },
+  ];
 
-  const handleLogout = () => {
-    navigate("/login");
+  const handleLogout = () => navigate("/login");
+  
+  const handleUploadClick = () => fileInputRef.current.click();
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name);
+      console.log("Archivo seleccionado:", file.name);
+      // Aquí puedes manejar la carga y procesamiento del archivo
+    }
   };
 
   return (
@@ -22,7 +41,7 @@ const Panel = () => {
       {/* Sidebar */}
       <aside className="panel-sidebar">
         <div className="panel-user-avatar">
-          <img src={avatar} alt="User" />
+          <img src={avatar} alt="Usuario" />
         </div>
         <h2 className="panel-user-name">User</h2>
 
@@ -53,7 +72,19 @@ const Panel = () => {
       {/* Main Content */}
       <main className="panel-main">
         <h1 className="panel-title">Panel de Recursos Humanos</h1>
-        <button className="panel-upload-btn">Ingresar registro de asistencias</button>
+
+        {/* Botón para cargar archivo */}
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          accept=".csv, .xlsx"
+          onChange={handleFileUpload}
+        />
+        <button className="panel-upload-btn" onClick={handleUploadClick}>
+          Ingresar registro de asistencias
+        </button>
+        {fileName && <p className="panel-file-name">Archivo seleccionado: {fileName}</p>}
 
         {/* Sección de estadísticas */}
         <div className="panel-stats">
@@ -66,10 +97,6 @@ const Panel = () => {
             <span>Sin anomalías (88)</span>
           </div>
           <div className="panel-stat-item">
-            <FaTimesCircle className="panel-icon-yellow" />
-            <span>Posibles anomalías (2)</span>
-          </div>
-          <div className="panel-stat-item">
             <FaTimesCircle className="panel-icon-red" />
             <span>Anomalías (23)</span>
           </div>
@@ -80,13 +107,13 @@ const Panel = () => {
         </div>
 
         {/* Sección de anomalías */}
-        <h2 className="panel-anomalies-title">Anomalías (23)</h2>
+        <h2 className="panel-anomalies-title">Anomalías ({anomalies.length})</h2>
         <div className="panel-anomalies-grid">
-          {[...Array(6)].map((_, i) => (
+          {anomalies.map((anomaly, i) => (
             <div key={i} className="panel-anomaly-item">
-              <img src={avatar} alt="User" className="panel-anomaly-img" />
-              <h3 className="panel-anomaly-name">Roman Quevedo</h3>
-              <span className="panel-anomaly-dept">Dto. Informática</span>
+              <img src={avatar} alt={anomaly.name} className="panel-anomaly-img" />
+              <h3 className="panel-anomaly-name">{anomaly.name}</h3>
+              <span className="panel-anomaly-dept">{anomaly.dept}</span>
               <button className="panel-details-btn">Ver detalles</button>
             </div>
           ))}
