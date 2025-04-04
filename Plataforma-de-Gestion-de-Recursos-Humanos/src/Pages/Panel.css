@@ -30,22 +30,6 @@
     font-weight: bold;
   }
   
-  /* Estilo de la lista de análisis recientes */
-  .panel-recent-list {
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  .panel-recent-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #1f2937a4;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
   /* Íconos en la lista */
   .panel-icon-check {
     color: #10b981; /* Verde */
@@ -62,7 +46,7 @@
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 1.5s;
   }
   
   .panel-logout:hover {
@@ -82,15 +66,16 @@
   /* Botón de subir archivo */
   .panel-upload-btn {
     display: inline-block;
-    background-color: #3741517a;
+    background-color: #37882c;
     padding: 10px 15px;
     border-radius: 8px;
     margin-bottom: 15px;
     cursor: pointer;
+    transition: background 1.5s;
   }
   
   .panel-upload-btn:hover {
-    background-color: #4b556398;
+    background-color: #69cc5c;
   }
 
   
@@ -126,6 +111,7 @@
     border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background 1.5s;
   }
   
   .panel-start-btn:hover {
