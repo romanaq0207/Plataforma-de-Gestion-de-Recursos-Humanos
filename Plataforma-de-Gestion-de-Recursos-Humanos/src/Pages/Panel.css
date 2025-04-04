@@ -118,7 +118,7 @@
     color: #ef4444;
   }
   
-  .panel-export-btn {
+  .panel-start-btn {
     display: inline-block;
     align-items: center;
     background-color: #22c55e9a;
@@ -128,7 +128,7 @@
     margin-top: 10px;
   }
   
-  .panel-export-btn:hover {
+  .panel-start-btn:hover {
     background-color: #16a34a;
   }
   
