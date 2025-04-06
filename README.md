@@ -66,13 +66,13 @@ Tener instalada la última versión de Node.js
 
 ▶️ Ejecutar el frontend
 ```bash
-cd src/Vista
+cd Plataforma-de-Gestion-de-Recursos-Humanos
 npm install
 npm run dev
 ```
 Generalmente se abre automáticamente en el navegador, si no, ir a http://localhost:5173
 
-##🛠️ Funcionalidades principales
+## 🛠️ Funcionalidades principales
 - Subida de archivos de asistencia en formato .xlsx, .xls o .csv
 
 - Detección automática de anomalías con Isolation Forest
@@ -83,5 +83,5 @@ Generalmente se abre automáticamente en el navegador, si no, ir a http://localh
 
 - Generación de dataset simulado de asistencia
 
-  ##📝 Licencia
+## 📝 Licencia
 Este proyecto fue desarrollado con fines académicos como parte de un trabajo práctico universitario.
