@@ -27,7 +27,7 @@ Este proyecto utiliza un modelo de *machine learning no supervisado* (`Isolation
 ```bash
 git clone https://github.com/romanaq0207/Plataforma-de-Gestion-de-Recursos-Humanos.git
 cd Plataforma-de-Gestion-de-Recursos-Humanos
-2. Backend (API en FastAPI + modelo de ML)
+### 2. Backend (API en FastAPI + modelo de ML)
 📦 Requisitos
 Python 3.x
 
@@ -51,7 +51,7 @@ cd src/Pages
 uvicorn backend:app --reload
 El backend se ejecutará en: http://localhost:8000
 
-3. Frontend (React + Vite)
+### 3. Frontend (React + Vite)
 ⚙️ Requisitos
 Tener instalada la última versión de Node.js
 
