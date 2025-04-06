@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {
   FaDownload,
   FaCheckCircle,
   FaTimesCircle,
   FaFileUpload,
+  FaChartLine,
+  FaUserClock,
 } from "react-icons/fa";
-import * as XLSX from "xlsx";
 import avatar from "./Images/user-avatar.png";
 import "./Panel.css";
 
@@ -30,45 +31,37 @@ const Panel = () => {
     return allowedExtensions.some((ext) => fileName.endsWith(ext));
   };
 
-  const processData = (jsonData) => {
-    const total = jsonData.length;
-    const filtered = jsonData.filter(
-      (row) =>
-        row.anomalia &&
-        typeof row.anomalia === "string" &&
-        row.anomalia.toLowerCase().includes("anomalía")
-    );
-
-    const namesWithAnomaly = filtered.map(
-      (row) => row.nombre_y_apellido_empleado || row.Nombre || "Nombre no disponible"
-    );
-
-    const uniqueNames = [...new Set(namesWithAnomaly)];
-    const uniqueAnomalies = uniqueNames.map((name) => ({ name }));
-
-    setDataCount(total);
-    setAnomalyCount(filtered.length);
-    setNonAnomalyCount(total - filtered.length);
-    setAnomalies(uniqueAnomalies);
-  };
-
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     if (file && isValidExtension(file.name)) {
       setFileName(file.name);
       setError("");
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: "array" });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
-        processData(jsonData);
-      };
+      const formData = new FormData();
+      formData.append("file", file);
 
-      reader.readAsArrayBuffer(file);
+      try {
+        const response = await fetch("http://localhost:8000/upload/", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Error en la respuesta del servidor");
+        }
+
+        const result = await response.json();
+        const names = result.nombres_con_anomalias || [];
+        const uniqueAnomalies = [...new Set(names)].map((name) => ({ name }));
+
+        setDataCount(result.total_registros || 0);
+        setAnomalyCount(result.total_anomalias || names.length);
+        setNonAnomalyCount(result.total_registros ? result.total_registros - (result.total_anomalias || 0) : 0);
+        setAnomalies(uniqueAnomalies);
+      } catch (err) {
+        console.error(err);
+        setError("No se pudo conectar con el servidor");
+      }
     } else {
       setError("El archivo debe tener extensión .csv, .xls o .xlsx");
       setFileName("");
@@ -92,7 +85,6 @@ const Panel = () => {
       <main className="panel-main">
         <h1 className="panel-title">Control de Asistencias</h1>
 
-        {/* Subir archivo */}
         <input
           type="file"
           ref={fileInputRef}
@@ -101,26 +93,46 @@ const Panel = () => {
           onChange={handleFileUpload}
         />
 
-        {/* BOTÓN MODERNO */}
         <StyledWrapper>
           <button className="animated-button" onClick={handleUploadClick}>
-            <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" className="arr-2">
               <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
             </svg>
             <span className="text">Ingresar registro de asistencias</span>
             <span className="circle" />
-            <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" className="arr-1">
               <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
             </svg>
           </button>
         </StyledWrapper>
 
-        {fileName && (
-          <p className="panel-file-name">Archivo seleccionado: {fileName}</p>
-        )}
+        {/* ✅ BOTONES DE DESCARGA */}
+        <div className="panel-downloads">
+          <button
+            className="panel-start-btn"
+            onClick={() => window.open("http://localhost:8000/descargar-excel/", "_blank")}
+          >
+            <FaDownload /> Descargar resultados Excel
+          </button>
+
+          <button
+            className="panel-start-btn"
+            onClick={() => window.open("http://localhost:8000/grafico/horarios/", "_blank")}
+          >
+            <FaChartLine /> Ver gráfico de horarios
+          </button>
+
+          <button
+            className="panel-start-btn"
+            onClick={() => window.open("http://localhost:8000/grafico/ausencias/", "_blank")}
+          >
+            <FaUserClock /> Ver gráfico de ausencias
+          </button>
+        </div>
+
+        {fileName && <p className="panel-file-name">Archivo seleccionado: {fileName}</p>}
         {error && <p className="panel-error">{error}</p>}
 
-        {/* Estadísticas */}
         <div className="panel-stats">
           <div className="panel-stat-item">
             <FaFileUpload className="panel-icon-blue" />
@@ -136,7 +148,6 @@ const Panel = () => {
           </div>
         </div>
 
-        {/* Lista de anomalías */}
         <h2 className="panel-anomalies-title">
           Empleados con Anomalías ({anomalies.length})
         </h2>
@@ -145,9 +156,6 @@ const Panel = () => {
             <div key={i} className="panel-anomaly-item">
               <img src={avatar} alt={anomaly.name} className="panel-anomaly-img" />
               <h3 className="panel-anomaly-name">{anomaly.name}</h3>
-              <button className="fancy-details-button">
-                <span>Ver detalles</span>
-              </button>
             </div>
           ))}
         </div>
