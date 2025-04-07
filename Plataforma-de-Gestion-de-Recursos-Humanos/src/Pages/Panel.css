@@ -139,3 +139,151 @@
   font-weight: bold;
   margin-top: 10px;
 }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 22, 22, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader {
+  border: 8px solid #eee;
+  border-top: 8px solid greenyellow;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.panel-start-btn {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.panel-start-btn:hover {
+  background-color: #c6f6d5;
+  color: #212121;
+  transform: scale(1.05);
+}
+
+.panel-start-btn:active {
+  transform: scale(0.95);
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.result-table th {
+  background-color: #999999;
+  font-weight: bold;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background: #e0e0e0;
+  color: black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #16a34a;
+  font-weight: bold;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 500px;
+  max-width: 97%;
+}
+
+.result-table th,
+.result-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.tabla-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}

@@ -18,9 +18,8 @@ function App() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:5000/api/analizar", {
-        method: "POST",
-        body: formData,
+      const response = await fetch("http://127.0.0.1:5000/date", {
+        method: "GET",
       });
 
       if (!response.ok) throw new Error("Error al procesar archivo");
