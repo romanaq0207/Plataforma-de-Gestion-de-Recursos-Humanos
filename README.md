@@ -36,7 +36,6 @@ Luego, accedé al navegador en:
 > 📌 Es importante abrir una **nueva terminal en paralelo**.
 
 ```bash
-cd Plataforma-de-Gestion-de-Recursos-Humanos/
 cd Modelo/
 pip install -r requirements.txt
 python api.py
