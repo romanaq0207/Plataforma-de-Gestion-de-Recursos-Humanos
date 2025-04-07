@@ -1,12 +1,54 @@
-# React + Vite
+# Plataforma de Gestión de Recursos Humanos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una **plataforma de Recursos Humanos** desarrollada por el Grupo 7 de Laboratorio de Software (NAQUEGI Corp.), que combina una interfaz web moderna con un backend basado en Python y Machine Learning para **detectar anomalias** en las asistencias de los empleados.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Pasos para ejecutar el proyecto
 
-## Expanding the ESLint configuration
+### 1. Clonar el repositorio
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/romanaq0207/Plataforma-de-Gestion-de-Recursos-Humanos.git
+cd Plataforma-de-Gestion-de-Recursos-Humanos
+```
+
+---
+
+### 2. Ejecutar el Frontend
+
+En la misma terminal, ejecutá:
+
+```bash
+cd Plataforma-de-Gestion-de-Recursos-Humanos/front
+npm install
+npm run dev
+```
+
+Luego, accedé al navegador en:  
+👉 [http://localhost:5174/](http://localhost:5174/)
+
+---
+
+### 3. Ejecutar el Backend
+
+> 📌 Es importante abrir una **nueva terminal en paralelo**.
+
+```bash
+cd Plataforma-de-Gestion-de-Recursos-Humanos/Modelo/
+pip install -r requirements.txt
+python api.py
+```
+
+⚠️ Si tu terminal no reconoce `python`, podés usar:
+
+```bash
+py api.py
+```
+
+---
+
+### © Derechos Reservados
+
+**Grupo 7 - Laboratorio de Software**  
+**NAQUEGI Corp.**
