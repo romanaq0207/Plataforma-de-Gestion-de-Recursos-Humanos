@@ -1,21 +1,23 @@
+import os
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import MinMaxScaler
 from openpyxl.styles import PatternFill
 from openpyxl import load_workbook
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.ticker import MaxNLocator
-import os
 
 def procesar_archivo(ruta_archivo):
     ext = os.path.splitext(ruta_archivo)[-1].lower()
     
-    # Cargar archivo
     if ext == ".csv":
         df = pd.read_csv(ruta_archivo)
     elif ext in [".xlsx", ".xls"]:
-        df = pd.read_excel(ruta_archivo)
+        df = pd.read_excel(ruta_archivo, engine='openpyxl')
+
     else:
         raise ValueError("Formato de archivo no soportado")
 
@@ -53,7 +55,6 @@ def procesar_archivo(ruta_archivo):
     df["anomaly_legenda"] = df["anomalia"]
     df.loc[df["anomalia"] == "Anomalía", "anomaly_legenda"] = df["motivo_anomalia"]
 
-    # Exportar a Excel con celdas pintadas
     df_export = df.drop(columns=[
         "anomaly_flag",
         "ausencias_consecutivas",
@@ -85,7 +86,6 @@ def procesar_archivo(ruta_archivo):
 
     wb.save("resultados.xlsx")
 
-    # Preparar datos para gráficos
     df_ref = df.copy()
     X_scaled = scaler.fit_transform(df_ref[[
         "entrada_minutos",
@@ -117,7 +117,6 @@ def procesar_archivo(ruta_archivo):
         "Normal", "Llegadas tarde consecutivas", "Salidas tempranas consecutivas"
     ])]
 
-    # ❗ Filtrar solo los registros dentro del rango 7:00 a 18:00 (420 a 1080 min)
     df_grafico = df_grafico[
         (df_grafico["entrada_minutos"] >= 420) & (df_grafico["entrada_minutos"] <= 1080) &
         (df_grafico["salida_minutos"] >= 420) & (df_grafico["salida_minutos"] <= 1080)
@@ -175,5 +174,8 @@ def procesar_archivo(ruta_archivo):
     empleados_con_anomalias = df[df["anomalia"] == "Anomalía"]["nombre_y_apellido_empleado"].unique().tolist()
     total_anomalias = len(df[df["anomalia"] == "Anomalía"])
     total_registros = len(df)
+    
+    tabla_json = df_export.fillna("").to_dict(orient="records")
 
-    return empleados_con_anomalias, total_anomalias, total_registros
+    return empleados_con_anomalias, total_anomalias, total_registros, tabla_json
+
