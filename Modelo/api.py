@@ -5,7 +5,15 @@ from flask_cors import CORS
 from model import procesar_archivo
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../frontend/build", static_url_path="/")
+
+@app.route("/")
+def index():
+    return send_from_directory(app.static_folder, "index.html")
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, "index.html")
 CORS(app)
 
 @app.route('/generar-dataset', methods=['GET'])

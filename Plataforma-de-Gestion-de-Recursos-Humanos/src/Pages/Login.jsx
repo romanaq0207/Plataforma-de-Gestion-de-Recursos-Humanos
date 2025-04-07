@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import "./Login.css";
 
@@ -18,21 +18,21 @@ function Login() {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    
-    
+
+
     setTimeout(() => {
       setAlertMessage("Bienvenido");
-      navigate("/panel"); 
+      navigate("/panel");
       setLoading(false);
     }, 1000);
   };
-  
+
 
   return (
     <div className="login-container">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="form">
           <label>Email:</label>
           <input
             type="email"
@@ -49,9 +49,8 @@ function Login() {
           {errors.email && (
             <span className="error-message">{errors.email.message}</span>
           )}
-        </div>
 
-        <div>
+
           <label>Contraseña:</label>
           <input
             type="password"
@@ -67,7 +66,10 @@ function Login() {
           {errors.password && (
             <span className="error-message">{errors.password.message}</span>
           )}
+
+
         </div>
+
 
         <button className="button" type="submit" disabled={loading}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24">

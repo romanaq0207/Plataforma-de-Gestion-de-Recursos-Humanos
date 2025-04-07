@@ -187,19 +187,6 @@ const Panel = () => {
           <button className="panel-start-btn" onClick={generarArchivoAsistencias}>
             <FaDownload /> Generar archivo de asistencias
           </button>
-
-
-          {grafico1 && (
-            <button className="panel-start-btn" onClick={() => handleOpenModal(grafico1)}>
-              <FaChartLine /> Ver gráfico de horarios
-            </button>
-          )}
-
-          {grafico2 && (
-            <button className="panel-start-btn" onClick={() => handleOpenModal(grafico2)}>
-              <FaUserClock /> Ver gráfico de ausencias
-            </button>
-          )}
         </div>
 
         {fileName && <p className="panel-file-name">Archivo seleccionado: {fileName}</p>}
